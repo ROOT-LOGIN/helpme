@@ -1,0 +1,7 @@
+LIBRARY TakaChance.dll
+
+EXPORTS
+	 ;DetourFinishHelperProcess @1
+	 TakaChanceMain @1
+	 ToBeDetour     @2
+	 pfnToBeDetour    DATA

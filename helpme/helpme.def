@@ -1,0 +1,33 @@
+LIBRARY helpme.dll
+
+; General routines for COM
+EXPORTS
+    DllCanUnloadNow            PRIVATE
+    DllGetClassObject          PRIVATE
+    DllRegisterServer          PRIVATE
+    DllUnregisterServer        PRIVATE
+
+; Callbacks for Debugger
+EXPORTS 
+    DebugExtensionInitialize
+    DebugExtensionUninitialize
+    DebugExtensionNotify
+    KnownStructOutput
+
+; Extension Commands
+EXPORTS
+    help
+    symoff
+    string
+    vftbl
+    qimap
+    takachance
+    atrpc
+    dtrpc
+    strpc
+    echo
+	disasm
+	asml
+	ldlib
+	detour
+	tstdetour

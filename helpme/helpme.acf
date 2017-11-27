@@ -1,0 +1,20 @@
+[
+	implicit_handle (handle_t HelpmeMain_IfHandle)
+]
+interface IHelpmeMain
+{
+	[async] HlpmConnect();
+	[async] HlpmDisconnect();
+}
+
+[
+	implicit_handle (handle_t HelpmeDetour_IfHandle)
+]
+interface IHelpmeDetour
+{
+	[async] HlpmLoadLibrary();
+	[async] HlpmLoadLibraryEx();
+	[async] HlpmDetourAttach();
+	[async] HlpmDetourDetach();
+	[async] HlpmTestDetour();
+}

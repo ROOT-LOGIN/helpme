@@ -1,0 +1,50 @@
+// helpme.idl : helpme 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(helpme.tlb)和封送处理代码。
+
+cpp_quote("#pragma comment(lib, \"rpcrt4.lib\")")
+cpp_quote("#if defined(UNICODE) || defined(_UNICODE)")
+cpp_quote("#define RPC_TSTR RPC_WSTR")
+cpp_quote("#else")
+cpp_quote("#define RPC_TSTR RPC_CSTR")
+cpp_quote("#endif")
+
+cpp_quote("#define HELPME_RPC_ENDPOINT_FORMATSRING _T(\"helpme::[%s]\")")
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(DDB1F25D-F591-4EC7-8924-7F36671232DC),
+	version(1111.2222)
+]
+interface IHelpmeMain
+{
+	void HlpmConnect([in] REFGUID rguidService, [out] GUID *pguidId);
+	void HlpmDisconnect([in] REFGUID rguidId);
+};
+
+[
+	uuid(A87D7576-6758-472B-A4F1-F1A5EA324FC6),
+	version(1111.2222)
+]
+interface IHelpmeDetour
+{
+	void HlpmLoadLibrary([in] BSTR bstrPath, [out] DWORD *pdwErr);
+	void HlpmLoadLibraryEx([in] BSTR bstrPath, [in] DWORD dwFlags, [out] DWORD *pdwErr);
+	void HlpmDetourAttach([in] ULONG64 pfnTarget, [in] ULONG64 pfnSource, [in] DWORD dwThreadId, [out] ULONG64* Id);
+	void HlpmDetourDetach([in] ULONG64 Id);
+	void HlpmTestDetour(void);
+};
+
+[
+	uuid(9D87F64C-1E45-44A0-8902-38FEFE203F6A),
+	version(1.0),
+]
+library helpmeLib
+{
+	importlib("stdole2.tlb");
+};
+
